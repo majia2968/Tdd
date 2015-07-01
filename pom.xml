@@ -19,7 +19,7 @@
 		<!-- Spring -->
 		<spring-framework.version>4.1.6.RELEASE</spring-framework.version>
 		<spring-data-jpa.version>1.8.0.RELEASE</spring-data-jpa.version>
-
+		<spring.security.core.version>4.1.6.RELEASE</spring.security.core.version>
 
 		<!-- Java EE / Java SE dependencies -->
 		<jsp.version>2.2</jsp.version>
