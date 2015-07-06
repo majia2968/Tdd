@@ -8,12 +8,15 @@ import org.slf4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.dao.UserDAO;
 import org.springframework.samples.petclinic.model.UserDB;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.User;
 
 public class LoginServiceImpl implements LoginService{
-	
-//	 protected static Logger logger = Logger.getLogger("service");
+
+	//	 protected static Logger logger = Logger.getLogger("service");
 
 	 private UserDAO userDAO = new UserDAO();
 	 
@@ -41,11 +44,11 @@ public class LoginServiceImpl implements LoginService{
 	   user =  new User(
 			   dbUser.getUsername(), 
 			   dbUser.getPassword().toLowerCase(),
-	     true,
-	     true,
-	     true,
-	     true,
-	     getAuthorities(dbUser.getAccess()) );
+		       true,
+		       true,
+		       true,
+		       true,
+		       getAuthorities(dbUser.getAccess()) );
 
 	  } catch (Exception e) {
 //	   logger.error("Error in retrieving user");
@@ -65,21 +68,21 @@ public class LoginServiceImpl implements LoginService{
 	  * @param access an integer value representing the access of the user
 	  * @return collection of granted authorities
 	  */
-	  public Collection<grantedauthority> getAuthorities(Integer access) {
+	  public Collection<GrantedAuthority> getAuthorities(Integer access) {
 	   // Create a list of grants for this user
-	   List<grantedauthority> authList = new ArrayList<grantedauthority>(2);
+	   List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(2);
 	   
 	   // All users are granted with ROLE_USER access
 	   // Therefore this user gets a ROLE_USER by default
 //	   logger.debug("Grant ROLE_USER to this user");
-	   authList.add(new GrantedAuthorityImpl("ROLE_USER"));
+	   authList.add(new SimpleGrantedAuthority("ROLE_USER"));
 	   
 	   // Check if this user has admin access 
 	   // We interpret Integer(1) as an admin user
 	   if ( access.compareTo(1) == 0) {
 	    // User has admin access
 //	    logger.debug("Grant ROLE_ADMIN to this user");
-	    authList.add(new GrantedAuthorityImpl("ROLE_ADMIN"));
+	    authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	   }
 
 	   // Return list of granted authorities

@@ -37,7 +37,7 @@ public class LoginController {
 			}
 		String userName = loginService.retrieveName();
 		model.addAttribute("name", "Welcome "+userName+"!");
-		return new ModelAndView("greetings", model);
+		return new ModelAndView("greetings", model); 
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
