@@ -1,10 +1,17 @@
 package org.springframework.samples.petclinic.web;
 
+//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+//import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import org.hsqldb.rights.User;
+import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -14,7 +21,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.samples.petclinic.service.LoginService;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import static org.mockito.Mockito.when;
+import org.springframework.web.servlet.HandlerMapping;
 
 public class LoginControllerTests {
 
@@ -23,9 +30,6 @@ public class LoginControllerTests {
 	
 	@Mock
 	private LoginService loginService;
-	
-	@Mock
-	private User user;
 
 	private MockMvc mockMvc;
 
@@ -39,37 +43,34 @@ public class LoginControllerTests {
 
 	@Test
 	public void testLogin() throws Exception{
-		mockMvc.perform(get("/welcome"))
+		mockMvc.perform(get("/auth/welcome"))
 		          .andExpect(status().isOk())
 	              .andExpect(view().name("login"));
 
 	}
 	
 	@Test
-	public void testOnLogin() throws Exception{
-		MockHttpServletRequest request = new MockHttpServletRequest();
-		request.setParameter("name", "chris");
-		request.setParameter("password", "chris");
+	public void testGetLoginPage() throws Exception{
 		
-		when(loginService.isValid()).thenReturn(true);
-		
-		mockMvc.perform(get("/login"))
+		mockMvc.perform(get("/auth/login").param("error", "true"))
         .andExpect(status().isOk())
-        .andExpect(view().name("greetings"));
+        .andDo(print())
+        .andExpect(model().attribute("error", "You have entered an invalid username or password!"))
+        .andExpect(view().name("loginpage"));
 
+		mockMvc.perform(get("/auth/login").param("error", "false"))
+        .andExpect(status().isOk())
+        .andDo(print())
+        .andExpect(model().attribute("error", ""))
+        .andExpect(view().name("loginpage"));
 	}
 	
 	@Test
-	public void testOnLoginFailed() throws Exception{
-		MockHttpServletRequest request = new MockHttpServletRequest();
-		request.setParameter("name", "chris");
-		request.setParameter("password", "chris");
-		
-		when(loginService.isValid()).thenReturn(false);
-		
-		mockMvc.perform(get("/login"))
+	public void testGetDeniedPage() throws Exception{
+				
+		mockMvc.perform(get("/auth/denied"))
         .andExpect(status().isOk())
-        .andExpect(view().name("relogin"));
+        .andExpect(view().name("deniedpage"));
 
 	}
 }
