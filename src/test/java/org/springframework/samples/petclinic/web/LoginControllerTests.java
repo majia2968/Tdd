@@ -43,9 +43,9 @@ public class LoginControllerTests {
 
 	@Test
 	public void testLogin() throws Exception{
-		mockMvc.perform(get("/auth/welcome"))
+		mockMvc.perform(get("/auth/welcome1"))
 		          .andExpect(status().isOk())
-	              .andExpect(view().name("login"));
+	              .andExpect(view().name("login1"));
 
 	}
 	

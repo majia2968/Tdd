@@ -27,6 +27,7 @@ public class LoginController {
 
 	@RequestMapping("/welcome")
 	public String login(Model model) {
+		logger.debug("hello, there!");
 		return "login";
 	}
 
