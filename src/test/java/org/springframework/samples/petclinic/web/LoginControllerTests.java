@@ -43,9 +43,9 @@ public class LoginControllerTests {
 
 	@Test
 	public void testLogin() throws Exception{
-		mockMvc.perform(get("/auth/welcome1"))
+		mockMvc.perform(get("/auth/welcome"))
 		          .andExpect(status().isOk())
-	              .andExpect(view().name("login1"));
+	              .andExpect(view().name("login"));
 
 	}
 	
@@ -56,13 +56,13 @@ public class LoginControllerTests {
         .andExpect(status().isOk())
         .andDo(print())
         .andExpect(model().attribute("error", "You have entered an invalid username or password!"))
-        .andExpect(view().name("loginpage"));
+        .andExpect(view().name("auth/loginpage"));
 
 		mockMvc.perform(get("/auth/login").param("error", "false"))
         .andExpect(status().isOk())
         .andDo(print())
         .andExpect(model().attribute("error", ""))
-        .andExpect(view().name("loginpage"));
+        .andExpect(view().name("auth/loginpage"));
 	}
 	
 	@Test
@@ -70,7 +70,7 @@ public class LoginControllerTests {
 				
 		mockMvc.perform(get("/auth/denied"))
         .andExpect(status().isOk())
-        .andExpect(view().name("deniedpage"));
+        .andExpect(view().name("auth/deniedpage"));
 
 	}
 }

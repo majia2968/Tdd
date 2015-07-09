@@ -71,7 +71,7 @@ public class LoginController {
 		}
 
 		// This will resolve to /WEB-INF/jsp/loginpage.jsp
-		return "loginpage";
+		return "auth/loginpage";
 	}
 
 	@RequestMapping(value = "/denied", method = RequestMethod.GET)
@@ -79,7 +79,7 @@ public class LoginController {
 		logger.debug("Received request to show denied page");
 
 		// This will resolve to /WEB-INF/jsp/deniedpage.jsp
-		return "deniedpage";
+		return "auth/deniedpage";
 	}
 
 }
