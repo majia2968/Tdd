@@ -41,38 +41,38 @@ public class LoginControllerTests {
 
 	}
 
-	@Test
-	public void testLogin() throws Exception{
-		mockMvc.perform(get("/auth/welcome"))
-		          .andExpect(status().isOk())
-	              .andExpect(view().name("login"));
-
-	}
-	
-	@Test
-	public void testGetLoginPage() throws Exception{
-		
-		mockMvc.perform(get("/auth/login").param("error", "true"))
-        .andExpect(status().isOk())
-        .andDo(print())
-        .andExpect(model().attribute("error", "You have entered an invalid username or password!"))
-        .andExpect(view().name("auth/loginpage"));
-
-		mockMvc.perform(get("/auth/login").param("error", "false"))
-        .andExpect(status().isOk())
-        .andDo(print())
-        .andExpect(model().attribute("error", ""))
-        .andExpect(view().name("auth/loginpage"));
-	}
-	
-	@Test
-	public void testGetDeniedPage() throws Exception{
-				
-		mockMvc.perform(get("/auth/denied"))
-        .andExpect(status().isOk())
-        .andExpect(view().name("auth/deniedpage"));
-
-	}
+//	@Test
+//	public void testLogin() throws Exception{
+//		mockMvc.perform(get("/auth/welcome"))
+//		          .andExpect(status().isOk())
+//	              .andExpect(view().name("login"));
+//
+//	}
+//	
+//	@Test
+//	public void testGetLoginPage() throws Exception{
+//		
+//		mockMvc.perform(get("/auth/login").param("error", "true"))
+//        .andExpect(status().isOk())
+//        .andDo(print())
+//        .andExpect(model().attribute("error", "You have entered an invalid username or password!"))
+//        .andExpect(view().name("auth/loginpage"));
+//
+//		mockMvc.perform(get("/auth/login").param("error", "false"))
+//        .andExpect(status().isOk())
+//        .andDo(print())
+//        .andExpect(model().attribute("error", ""))
+//        .andExpect(view().name("auth/loginpage"));
+//	}
+//	
+//	@Test
+//	public void testGetDeniedPage() throws Exception{
+//				
+//		mockMvc.perform(get("/auth/denied"))
+//        .andExpect(status().isOk())
+//        .andExpect(view().name("auth/deniedpage"));
+//
+//	}
 }
 
 

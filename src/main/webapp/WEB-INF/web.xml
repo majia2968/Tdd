@@ -35,7 +35,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		- Applied by ContextLoaderListener. -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/business-config.xml</param-value>
+		<param-value>classpath:spring/spring-security.xml</param-value>
 	</context-param>
 	
 	<listener>
@@ -124,5 +124,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<!-- No need for welcome-file declaration here. See inside spring/mvc-core-config.xml 
 		: <mvc:view-controller path="/" view-name="welcome" /> -->
+	
+	<!-- Spring Security -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
 
 </web-app>

@@ -7,11 +7,11 @@
 
 <html lang="en">
 
-<jsp:include page="../fragments/staticFiles.jsp" />
+<jsp:include page="fragments/staticFiles.jsp" />
 
 <body>
 	<div class="container">
-		<jsp:include page="../fragments/bodyHeader.jsp" />
+		<jsp:include page="fragments/bodyHeader.jsp" />
 		<h2>
 			<fmt:message key="welcome" />
 		</h2>
@@ -60,7 +60,7 @@
 	</div>
 
 
-		<jsp:include page="../fragments/footer.jsp" />
+		<jsp:include page="fragments/footer.jsp" />
 
 	</div>
 
