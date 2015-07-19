@@ -14,9 +14,9 @@
 			authentication-failure-url="/login?error" 
 			username-parameter="username"
 			password-parameter="password" />
-		<logout logout-success-url="/logout" logout-url="/j_spring_security_logout" invalidate-session="true" />
-		<!-- enable csrf protection -->
-		<csrf/>
+        <logout invalidate-session="true" logout-success-url="/login" logout-url="/logout" />		
+        <!-- enable csrf protection -->
+		<!--  <csrf/>  -->
 	</http>
  
 	<authentication-manager>

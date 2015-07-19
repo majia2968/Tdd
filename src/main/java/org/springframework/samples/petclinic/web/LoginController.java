@@ -21,50 +21,50 @@ public class LoginController {
 	protected static Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 
-//	@RequestMapping("/welcome")
-//	public ModelAndView login() {
-//		logger.debug("hello, there!");
+	@RequestMapping("/welcome")
+	public ModelAndView login() {
+		logger.debug("hello, there!");
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "Spring Security Custom Login Form");
+		model.addObject("message", "This is welcome page!");
+		model.setViewName("welcome");
+		return model;
+	}
+
+//	// Spring Security see this :
+//	@RequestMapping(value = "/login", method = RequestMethod.GET)
+//	public ModelAndView login(
+//			@RequestParam(value = "error", required = false) String error,
+//			@RequestParam(value = "logout", required = false) String logout) {
+//		logger.debug("Login .........");
+//
 //		ModelAndView model = new ModelAndView();
-//		model.addObject("title", "Spring Security Custom Login Form");
-//		model.addObject("message", "This is welcome page!");
-//		model.setViewName("hello");
+//		if (error != null) {
+//			model.addObject("error", "Invalid username and password!");
+//		}
+//
+//		if (logout != null) {
+//			model.addObject("msg", "You've been logged out successfully.");
+//		}
+//		model.setViewName("login");
+//
 //		return model;
+//
 //	}
 
-	// Spring Security see this :
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login(
-			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
-		logger.debug("Login .........");
-
-		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", "Invalid username and password!");
-		}
-
-		if (logout != null) {
-			model.addObject("msg", "You've been logged out successfully.");
-		}
-		model.setViewName("login");
-
-		return model;
-
-	}
-
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public ModelAndView logout(
-			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
-		logger.debug("Logout .........");
-
-		ModelAndView model = new ModelAndView();
-
-		model.setViewName("logout");
-
-		return model;
-
-	}
+//	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+//	public ModelAndView logout(
+//			@RequestParam(value = "error", required = false) String error,
+//			@RequestParam(value = "logout", required = false) String logout) {
+//		logger.debug("Logout .........");
+//
+//		ModelAndView model = new ModelAndView();
+//
+//		model.setViewName("logout");
+//
+//		return model;
+//
+//	}
 
 	// @RequestMapping("/login")
 	// public ModelAndView onLogin(ModelMap model, HttpServletRequest request,
