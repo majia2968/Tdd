@@ -21,52 +21,50 @@ public class LoginController {
 	protected static Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 
+//	@RequestMapping("/welcome")
+//	public ModelAndView login() {
+//		logger.debug("hello, there!");
+//		ModelAndView model = new ModelAndView();
+//		model.addObject("title", "Spring Security Custom Login Form");
+//		model.addObject("message", "This is welcome page!");
+//		model.setViewName("hello");
+//		return model;
+//	}
 
-	@RequestMapping("/welcome")
-	public ModelAndView login() {
-		logger.debug("hello, there!");
+	// Spring Security see this :
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView login(
+			@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout) {
+		logger.debug("Login .........");
+
 		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Custom Login Form");
-		model.addObject("message", "This is welcome page!");
-		model.setViewName("hello");
+		if (error != null) {
+			model.addObject("error", "Invalid username and password!");
+		}
+
+		if (logout != null) {
+			model.addObject("msg", "You've been logged out successfully.");
+		}
+		model.setViewName("login");
+
 		return model;
+
 	}
-	
-	//Spring Security see this :
-		@RequestMapping(value = "/login", method = RequestMethod.GET)
-		public ModelAndView login(
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView logout(
 			@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
-			logger.debug("Login .........");
+		logger.debug("Logout .........");
 
-			ModelAndView model = new ModelAndView();
-			if (error != null) {
-				model.addObject("error", "Invalid username and password!");
-			}
-	 
-			if (logout != null) {
-				model.addObject("msg", "You've been logged out successfully.");
-			}
-			model.setViewName("login");
-	 
-			return model;
-	 
-		}
-		
-		@RequestMapping(value = "/logout", method = RequestMethod.GET)
-		public ModelAndView logout(
-			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
-			logger.debug("Logout .........");
+		ModelAndView model = new ModelAndView();
 
-			ModelAndView model = new ModelAndView();
+		model.setViewName("logout");
 
-			model.setViewName("logout");
-	 
-			return model;
-	 
-		}
-	 
+		return model;
+
+	}
 
 	// @RequestMapping("/login")
 	// public ModelAndView onLogin(ModelMap model, HttpServletRequest request,
@@ -82,34 +80,34 @@ public class LoginController {
 	// model.addAttribute("name", "Welcome "+userName+"!");
 	// return new ModelAndView("greetings", model);
 	// }
-//
-//	@RequestMapping(value = "/login", method = RequestMethod.GET)
-//	public String getLoginPage(
-//			@RequestParam(value = "error", required = false) boolean error,
-//			ModelMap model) {
-//		logger.debug("Received request to show login page");
-//
-//		// Add an error message to the model if login is unsuccessful
-//		// The 'error' parameter is set to true based on the when the
-//		// authentication has failed.
-//		// We declared this under the authentication-failure-url attribute
-//		// inside the spring-security.xml
-//		/*
-//		 * See below: <form-login login-page="/krams/auth/login"
-//		 * authentication-failure-url="/krams/auth/login?error=true"
-//		 * default-target-url="/krams/main/common"/>
-//		 */
-//		if (error == true) {
-//			// Assign an error message
-//			model.put("error",
-//					"You have entered an invalid username or password!");
-//		} else {
-//			model.put("error", "");
-//		}
-//
-//		// This will resolve to /WEB-INF/jsp/loginpage.jsp
-//		return "auth/loginpage";
-//	}
+	//
+	// @RequestMapping(value = "/login", method = RequestMethod.GET)
+	// public String getLoginPage(
+	// @RequestParam(value = "error", required = false) boolean error,
+	// ModelMap model) {
+	// logger.debug("Received request to show login page");
+	//
+	// // Add an error message to the model if login is unsuccessful
+	// // The 'error' parameter is set to true based on the when the
+	// // authentication has failed.
+	// // We declared this under the authentication-failure-url attribute
+	// // inside the spring-security.xml
+	// /*
+	// * See below: <form-login login-page="/krams/auth/login"
+	// * authentication-failure-url="/krams/auth/login?error=true"
+	// * default-target-url="/krams/main/common"/>
+	// */
+	// if (error == true) {
+	// // Assign an error message
+	// model.put("error",
+	// "You have entered an invalid username or password!");
+	// } else {
+	// model.put("error", "");
+	// }
+	//
+	// // This will resolve to /WEB-INF/jsp/loginpage.jsp
+	// return "auth/loginpage";
+	// }
 
 	@RequestMapping(value = "/denied", method = RequestMethod.GET)
 	public String getDeniedPage() {
