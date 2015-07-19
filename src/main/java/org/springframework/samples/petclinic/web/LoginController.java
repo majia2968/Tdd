@@ -16,14 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-//@RequestMapping("/auth")
 public class LoginController {
 
 	protected static Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 
-//	@Autowired
-//	private LoginService loginService;
 
 	@RequestMapping("/welcome")
 	public ModelAndView login() {
@@ -40,7 +37,8 @@ public class LoginController {
 		public ModelAndView login(
 			@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
-	 
+			logger.debug("Login .........");
+
 			ModelAndView model = new ModelAndView();
 			if (error != null) {
 				model.addObject("error", "Invalid username and password!");
@@ -50,6 +48,20 @@ public class LoginController {
 				model.addObject("msg", "You've been logged out successfully.");
 			}
 			model.setViewName("login");
+	 
+			return model;
+	 
+		}
+		
+		@RequestMapping(value = "/logout", method = RequestMethod.GET)
+		public ModelAndView logout(
+			@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout) {
+			logger.debug("Logout .........");
+
+			ModelAndView model = new ModelAndView();
+
+			model.setViewName("logout");
 	 
 			return model;
 	 
