@@ -22,9 +22,9 @@ public class LoginController {
 			.getLogger(LoginController.class);
 
 	@RequestMapping("/welcome")
-	public ModelAndView login() {
-		logger.debug("hello, there!");
+	public ModelAndView welcome() {
 		ModelAndView model = new ModelAndView();
+		System.out.println("system print, welcome to my clinic");
 		model.addObject("title", "Spring Security Custom Login Form");
 		model.addObject("message", "This is welcome page!");
 		model.setViewName("welcome");

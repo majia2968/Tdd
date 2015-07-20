@@ -149,6 +149,18 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+
 		<!-- used for EhCacheCacheManager -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -173,10 +185,10 @@
 		</dependency>
 		<!-- Spring Security -->
 		<dependency>
-	        <groupId>org.springframework.security</groupId>
-	        <artifactId>spring-security-core</artifactId>
-	        <version>${spring.security.version}</version>
-        </dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
@@ -416,19 +428,19 @@
 					<source>${java-version}</source>
 					<target>${java-version}</target>
 				</configuration>
-			</plugin> 
-			 <plugin>
-			 <groupId>org.apache.tomcat.maven</groupId>
-			 <artifactId>tomcat7-maven-plugin</artifactId>
-			 <version>2.1</version>
-			 <configuration>
-			 <!--<url>http://192.168.1.100:8080/manager/text</url>-->
-			  <url>http://localhost:8080/manager/text</url> 
-			 <path>/petclinic</path>
-			 <warFile>target/petclinic.war</warFile>
-			 <server>tomcat7</server>
-			 </configuration>
-			 </plugin>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<!--<url>http://192.168.1.100:8080/manager/text</url> -->
+					<url>http://localhost:8080/manager/text</url>
+					<path>/petclinic</path>
+					<warFile>target/petclinic.war</warFile>
+					<server>tomcat7</server>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
