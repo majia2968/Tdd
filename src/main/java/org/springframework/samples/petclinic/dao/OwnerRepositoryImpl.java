@@ -38,6 +38,9 @@ public class OwnerRepositoryImpl implements OwnerRepository{
 		owner.setCity("beijing");
 		owner.setFirstName("mike");
 		System.out.println("............13...............");
+		String city = owner.getCity();
+		System.out.println("............2..............." + city);
+
 		return owner;
 	}
 
