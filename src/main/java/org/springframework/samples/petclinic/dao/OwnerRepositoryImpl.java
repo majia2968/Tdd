@@ -9,8 +9,8 @@ import org.springframework.samples.petclinic.model.Owner;
 
 public class OwnerRepositoryImpl implements OwnerRepository{
 	
-	@Autowired
-	SessionFactory sessionFactory;
+//	@Autowired
+//	SessionFactory sessionFactory;
 	@Autowired
 	private Owner owner;
 

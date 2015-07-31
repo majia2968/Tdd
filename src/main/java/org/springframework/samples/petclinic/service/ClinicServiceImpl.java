@@ -51,10 +51,10 @@ public class ClinicServiceImpl implements ClinicService {
 //        this.visitRepository = visitRepository;
 //    }
     
-    @Autowired
-    public ClinicServiceImpl(OwnerRepository ownerRepository) {
-        this.ownerRepository = ownerRepository;
-    }
+//    @Autowired
+//    public ClinicServiceImpl(OwnerRepository ownerRepository) {
+//        this.ownerRepository = ownerRepository;
+//    }
 
 	public Collection<PetType> findPetTypes() throws DataAccessException {
 		// TODO Auto-generated method stub
