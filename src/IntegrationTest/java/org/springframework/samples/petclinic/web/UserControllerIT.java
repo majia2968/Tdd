@@ -1,4 +1,4 @@
-package java.org.springframework.samples.petclinic.web;
+package org.springframework.samples.petclinic.web;
 
 import static org.junit.Assert.*;
 
