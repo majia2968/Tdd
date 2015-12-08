@@ -40,7 +40,8 @@ public class ClinicServiceImpl implements ClinicService {
 
 //    private PetRepository petRepository;
 //    private VetRepository vetRepository;
-    private OwnerRepository ownerRepository;
+    @Autowired
+	private OwnerRepository ownerRepository;
 //    private VisitRepository visitRepository;
 
 //    @Autowired
@@ -63,9 +64,9 @@ public class ClinicServiceImpl implements ClinicService {
 
 	public Owner findOwnerById(int id) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		return ownerRepository.findById(id);
 	}
-
+	@Transactional(readOnly = true)
 	public Pet findPetById(int id) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return null;
@@ -90,11 +91,10 @@ public class ClinicServiceImpl implements ClinicService {
 		// TODO Auto-generated method stub
 		
 	}
-
+	@Transactional(readOnly = true)
 	public Collection<Owner> findOwnerByLastName(String lastName)
-			throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+			throws DataAccessException {		
+		return ownerRepository.findByLastName(lastName);
 	}
 
 //    @Override

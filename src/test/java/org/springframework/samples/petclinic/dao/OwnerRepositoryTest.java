@@ -39,16 +39,6 @@ public class OwnerRepositoryTest {
 //		doNothing().when(owner).setFirstName("mike");
 
 //		when(ownerRepositoryImpl.getOwner(anyString())).thenReturn(owner);
-		when(owner.getCity()).thenReturn("shanghai");
-		owner = ownerRepositoryImpl.getOwner("chris");
-		assertNotNull(owner);
-		verify(owner).setAddress(anyString());
-		verify(owner).setCity(anyString());
-
-		
-//		Owner ownerExp = ownerRepositoryImpl.getOwner("chris");
-		System.out.println(owner.getCity());
-		System.out.println(owner.getAddress());
 
 //		System.out.println(owner);
 //		assertSame(ownerExp, owner);

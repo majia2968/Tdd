@@ -1,47 +1,38 @@
 package org.springframework.samples.petclinic.dao;
 
 import java.util.Collection;
+import java.util.Collections;
 
-import org.hibernate.SessionFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class OwnerRepositoryImpl implements OwnerRepository{
 	
-//	@Autowired
-//	SessionFactory sessionFactory;
-	@Autowired
-	private Owner owner;
+    @PersistenceContext
+    private EntityManager em;
 
-	public Collection<Owner> findByLastName(String lastName)
-			throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public Collection<Owner> findByLastName(String lastName) {
+    	Query query  = this.em.createQuery("SELECT DISTINCT owner FROM Owner owner left join fetch owner.pets WHERE owner.lastName like :lastName");
+    	query.setParameter("lastName", lastName + "%");
+    	return query.getResultList();
+    }
 
 	public Owner findById(int id) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        Query query = this.em.createQuery("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id");
+        query.setParameter("id", id);
+        return (Owner) query.getSingleResult();		
+    }
+	
 
 	public void save(Owner owner) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	public Owner getOwner(String name) {
-//		Owner owner = new Owner();
-		System.out.println("............1...............");
-		owner.setAddress("dd");
-		System.out.println("............2...............");
-		owner.setCity("beijing");
-		owner.setFirstName("mike");
-		System.out.println("............13...............");
-		String city = owner.getCity();
-		System.out.println("............2..............." + city);
-
-		return owner;
 	}
 
 }

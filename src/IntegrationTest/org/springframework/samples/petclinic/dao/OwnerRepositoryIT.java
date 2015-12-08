@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.dao;
 
 import org.junit.Test;
+import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,16 @@ public class OwnerRepositoryIT {
 
 	@Autowired
 	private OwnerRepository ownerRepositoryImpl;
+	@Autowired
+	private ClinicService clinicService;
 	
 	@Test
-	public void testFindByLastName1() {
+	public void testFindByLastName1() {	
+		System.out.println(clinicService.findOwnerById(1).getFirstName());	
+	}
 	
-		ownerRepositoryImpl.findById(0);
-	
+	@Test
+	public void testFindByLastName() {	
+		System.out.println(clinicService.findOwnerByLastName("D"));	
 	}
 }
