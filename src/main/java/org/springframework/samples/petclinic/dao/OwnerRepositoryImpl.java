@@ -19,7 +19,7 @@ public class OwnerRepositoryImpl implements OwnerRepository{
     private EntityManager em;
 
     public Collection<Owner> findByLastName(String lastName) {
-    	Query query  = this.em.createQuery("SELECT DISTINCT owner FROM Owner owner left join fetch owner.pets WHERE owner.lastName like :lastName");
+    	Query query  = this.em.createQuery("SELECT DISTINCT owner FROM Owner owner left join fetch owner.pets WHERE lower(owner.lastName) like lower(:lastName)");
     	query.setParameter("lastName", lastName + "%");
     	return query.getResultList();
     }
@@ -30,9 +30,12 @@ public class OwnerRepositoryImpl implements OwnerRepository{
         return (Owner) query.getSingleResult();		
     }
 	
-
 	public void save(Owner owner) throws DataAccessException {
-	
+        if (owner.getId() == null) {
+            this.em.persist(owner);
+        } else {
+            this.em.merge(owner);
+        }
 	}
 
 }

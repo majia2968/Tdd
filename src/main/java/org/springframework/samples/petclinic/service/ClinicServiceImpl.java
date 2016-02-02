@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.dao.OwnerRepository;
+import org.springframework.samples.petclinic.dao.PetRepository;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
@@ -42,7 +43,8 @@ public class ClinicServiceImpl implements ClinicService {
 //    private VetRepository vetRepository;
     @Autowired
 	private OwnerRepository ownerRepository;
-//    private VisitRepository visitRepository;
+    @Autowired
+    private PetRepository petRepository;
 
 //    @Autowired
 //    public ClinicServiceImpl(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository, VisitRepository visitRepository) {
@@ -54,16 +56,15 @@ public class ClinicServiceImpl implements ClinicService {
     
 //    @Autowired
 //    public ClinicServiceImpl(OwnerRepository ownerRepository) {
-//        this.ownerRepository = ownerRepository;
+//        this.ownerRepository = ownrRepository;
 //    }
 
-	public Collection<PetType> findPetTypes() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Transactional(readOnly = true)
+    public Collection<PetType> findPetTypes() throws DataAccessException {
+        return petRepository.findPetTypes();
+    }
 
 	public Owner findOwnerById(int id) throws DataAccessException {
-		// TODO Auto-generated method stub
 		return ownerRepository.findById(id);
 	}
 	@Transactional(readOnly = true)
@@ -71,10 +72,10 @@ public class ClinicServiceImpl implements ClinicService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	@Transactional
 	public void savePet(Pet pet) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		petRepository.save(pet);
 	}
 
 	public void saveVisit(Visit visit) throws DataAccessException {
@@ -86,10 +87,9 @@ public class ClinicServiceImpl implements ClinicService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Transactional
 	public void saveOwner(Owner owner) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		ownerRepository.save(owner);
 	}
 	@Transactional(readOnly = true)
 	public Collection<Owner> findOwnerByLastName(String lastName)
