@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,18 +57,23 @@ public class PetController {
     }
     
     @RequestMapping(value = "/pets/new", method = RequestMethod.GET)
-    public String initCreationForm(Map<String, Object> model) {
+    public String initCreationForm(Owner owner, ModelMap model) {
         Pet pet = new Pet();
+        owner.addPet(pet);
         model.put("pet", pet);
         return "pets/createOrUpdatePetForm";
     }
 
     @RequestMapping(value = "/pets/new", method = RequestMethod.POST)
-    public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model) {
+    public String processCreationForm(Owner owner, Pet pet, BindingResult result, ModelMap model) {
+//    	PetType pt = clinicService.findPetTypeById(Integer.parseInt(type));
+//    	pet.setType(pt);
+//    	PetValidator petValidator = new PetValidator();
+//    	petValidator.validate(pet, result);
         if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null){
             result.rejectValue("name", "duplicate", "already exists");
         }
-        if (result.hasErrors()) {
+        if (result.hasErrors()) {        	
             model.put("pet", pet);
             return "pets/createOrUpdatePetForm";
         } else {

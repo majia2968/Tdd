@@ -22,6 +22,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.dao.OwnerRepository;
 import org.springframework.samples.petclinic.dao.PetRepository;
+import org.springframework.samples.petclinic.dao.PetTypeRepository;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
@@ -45,6 +46,8 @@ public class ClinicServiceImpl implements ClinicService {
 	private OwnerRepository ownerRepository;
     @Autowired
     private PetRepository petRepository;
+    @Autowired
+    private PetTypeRepository petTypeRepository;
 
 //    @Autowired
 //    public ClinicServiceImpl(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository, VisitRepository visitRepository) {
@@ -96,6 +99,7 @@ public class ClinicServiceImpl implements ClinicService {
 			throws DataAccessException {		
 		return ownerRepository.findByLastName(lastName);
 	}
+
 
 //    @Override
 //    @Transactional(readOnly = true)

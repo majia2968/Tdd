@@ -137,6 +137,7 @@ public class OwnerController {
     public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
         mav.addObject(this.clinicService.findOwnerById(ownerId));
+        System.out.println("hello, first call");
         return mav;
     }
 
