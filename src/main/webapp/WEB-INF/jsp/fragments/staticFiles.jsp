@@ -28,6 +28,7 @@ PetClinic :: a Spring Framework demonstration
     <!-- jquery-ui.css file is not that big so we can afford to load it -->
     <spring:url value="/webjars/jquery-ui/1.10.3/themes/base/jquery-ui.css" var="jQueryUiCss"/>
     <link href="${jQueryUiCss}" rel="stylesheet"></link>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 </head>
 
 
