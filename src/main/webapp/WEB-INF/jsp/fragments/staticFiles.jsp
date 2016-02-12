@@ -2,6 +2,7 @@
 
 <!--
 PetClinic :: a Spring Framework demonstration
+http://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=responsive-layout
 -->
 
 <head>
@@ -9,18 +10,10 @@ PetClinic :: a Spring Framework demonstration
     <title>PetClinic :: a Spring Framework demonstration</title>
 
 
-    <spring:url value="/webjars/bootstrap/2.3.0/css/bootstrap.min.css" var="bootstrapCss"/>
-    <link href="${bootstrapCss}" rel="stylesheet"/>
-
-    <spring:url value="/resources/css/petclinic.css" var="petclinicCss"/>
-    <link href="${petclinicCss}" rel="stylesheet"/>
-
-    <spring:url value="/webjars/jquery/2.0.3/jquery.js" var="jQuery"/>
-    <script src="${jQuery}"></script>
-
-	<!-- jquery-ui.js file is really big so we only load what we need instead of loading everything -->
-    <spring:url value="/webjars/jquery-ui/1.10.3/ui/jquery.ui.core.js" var="jQueryUiCore"/>
-    <script src="${jQueryUiCore}"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 	<spring:url value="/webjars/jquery-ui/1.10.3/ui/jquery.ui.datepicker.js" var="jQueryUiDatePicker"/>
     <script src="${jQueryUiDatePicker}"></script>
